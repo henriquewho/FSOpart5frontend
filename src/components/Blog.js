@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 
-const Blog = ({blog, handleLike}) => {
+const Blog = ({blog, handleLike, handleDelete}) => {
   const [open, setOpen] = useState(false); 
 
   const controlOpen = () => {
@@ -18,6 +18,7 @@ const Blog = ({blog, handleLike}) => {
       <p>Author: {blog.author}</p>
       <p>Url: {blog.url}</p>
       <p>Likes: {blog.likes} <button onClick={()=>handleLike(blog)}>like</button></p>
+      <p><button onClick={()=>handleDelete(blog)}>Delete this blog</button></p>
     </div>
 
   </div>  

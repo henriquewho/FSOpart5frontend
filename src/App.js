@@ -96,10 +96,19 @@ const App = () => {
   const handleLike = async blog => {
     try {
       blog.likes++; 
-      let resp = await blogService.update(blog)
+      await blogService.update(blog)
       setBlogs(blogs.map(each=>each))
     } catch (err){
       console.log('error liking: ', err);
+    }
+  }
+
+  const handleDelete = async blog => {
+    try {
+      const resp = blogService.deleteBlog(blog.id); 
+      setBlogs(blogs.filter(each=>each.id!==blog.id))
+    } catch (err){
+      console.log('error deleting: ', err);
     }
   }
 
@@ -118,7 +127,7 @@ const App = () => {
           if (a.likes === b.likes) return 0; 
           else return 1; 
         }).map(blog =>
-          <Blog key={blog.id} blog={blog} handleLike={handleLike}/>
+          <Blog key={blog.id} blog={blog} handleLike={handleLike} handleDelete={handleDelete}/>
         )}
 
         <br/>
