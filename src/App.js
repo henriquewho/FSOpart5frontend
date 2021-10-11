@@ -113,7 +113,11 @@ const App = () => {
 
         <br/>
 
-        {blogs.map(blog =>
+        {blogs.sort((a, b)=>{
+          if (a.likes > b.likes) return -1; 
+          if (a.likes === b.likes) return 0; 
+          else return 1; 
+        }).map(blog =>
           <Blog key={blog.id} blog={blog} handleLike={handleLike}/>
         )}
 
