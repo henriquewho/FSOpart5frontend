@@ -11,12 +11,22 @@
 }
 
 .blog-entry {
-    border-bottom: 1px solid black;
+    border: 1px solid black;
     width: 400px;
     margin: 5px; 
+    margin-bottom: 10px;
     font-size: 1.1rem;
 }
 
 .button-add-form {
     margin-top: 5px; 
+}
+
+p {
+    margin: 0; 
+    padding-top: 5px; 
+}
+
+.view-blog-button {
+    margin-left: 20px;
 }

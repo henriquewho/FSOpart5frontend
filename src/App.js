@@ -84,7 +84,7 @@ const App = () => {
 
       setMessage({message: 'Blog added!', status: 'success'})
       setTimeout(()=>setMessage(null), 5000); 
-      
+
     } catch (err){
       console.log('Error adding blog: ', err);
       setMessage({message: err.message, status: 'error'})
@@ -93,45 +93,15 @@ const App = () => {
 
   }
 
-  /*
-  const handleAdd = async e => {
-    e.preventDefault(); 
+  const handleLike = async blog => {
     try {
-      const newBlog = {
-        title, author, url
-      }
-      const resp = await blogService.create(newBlog)
-      setTitle(''); 
-      setAuthor(''); 
-      setUrl(''); 
-      setBlogs(blogs.concat(resp)); 
-
-      blogFormRef.current.toggleVisibility(); 
-
-      setMessage({message: 'Blog added!', status: 'success'})
-      setTimeout(()=>setMessage(null), 5000); 
+      blog.likes++; 
+      let resp = await blogService.update(blog)
+      setBlogs(blogs.map(each=>each))
     } catch (err){
-      console.log('Error adding blog: ', err);
-      setMessage({message: err.message, status: 'error'})
-      setTimeout(()=>setMessage(null), 5000); 
+      console.log('error liking: ', err);
     }
   }
-  */
-
-  /*
-  const handleTitle = e => {
-    e.preventDefault(); 
-    setTitle(e.target.value); 
-  }
-  const handleAuthor = e => {
-    e.preventDefault(); 
-    setAuthor(e.target.value); 
-  }
-  const handleUrl = e => {
-    e.preventDefault(); 
-    setUrl(e.target.value); 
-  }
-  */
 
   const blogsList = () => {
     return (
@@ -144,7 +114,7 @@ const App = () => {
         <br/>
 
         {blogs.map(blog =>
-          <Blog key={blog.id} blog={blog} />
+          <Blog key={blog.id} blog={blog} handleLike={handleLike}/>
         )}
 
         <br/>
