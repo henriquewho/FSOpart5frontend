@@ -10,7 +10,7 @@ const Blog = ({blog, handleLike, handleDelete}) => {
   }
 
   return (
-  <div className='blog-entry'>
+  <div className='blog'>
     {blog.title}
     <button onClick={controlOpen} className='view-blog-button'>{open ? 'Hide' : 'View'}</button>
 
